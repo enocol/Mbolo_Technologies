@@ -342,6 +342,12 @@ ul {
   width: 100%;
 }
 
+/* The nav carries its own CTA for the open mobile menu, and .header__cta is the
+   wide-screen one. Show exactly one: this hides the nav copy, and the mobile
+   breakpoint below swaps which is visible. */
+.nav .btn {
+  display: none;
+}
 .header__cta {
   display: inline-flex;
 }
@@ -756,6 +762,9 @@ ul {
 
 .phone {
   justify-self: center;
+  /* min-width:0 so the grid column may shrink below the mockup's 300px ideal;
+     without it the column floors at 300px and pushes narrow phones sideways. */
+  min-width: 0;
   width: min(300px, 100%);
   border-radius: 34px;
   background: linear-gradient(165deg, var(--brand-800), var(--brand-600));
@@ -1309,7 +1318,7 @@ ul {
   color: var(--brand-700);
   font-size: 0.86em;
   padding: 1px 6px;
-  white-space: nowrap;
+  overflow-wrap: break-word;
 }
 
 .legal__draft {
@@ -1335,8 +1344,15 @@ ul {
 
 .legal__shell {
   display: grid;
-  grid-template-columns: 1fr;
+  /* minmax(0, 1fr), not 1fr: a grid item's automatic minimum size is its
+     content, so the table's min-width floor would otherwise set the width of
+     the whole column and push the page sideways. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 40px;
+}
+.legal__toc,
+.legal__body {
+  min-width: 0;
 }
 @media (min-width: 900px) {
   .legal__shell {
@@ -1415,6 +1431,7 @@ ul {
 .legal__body p,
 .legal__body li {
   max-width: 66ch;
+  overflow-wrap: break-word;
 }
 .legal__body p {
   margin: 0 0 14px;
@@ -1520,7 +1537,7 @@ ul {
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 980px) {
   .nav-toggle {
     display: grid;
   }
@@ -1556,6 +1573,7 @@ ul {
     display: none;
   }
   .nav .btn {
+    display: inline-flex;
     margin-top: 18px;
   }
 }
@@ -1587,6 +1605,115 @@ ul {
   .hero__actions,
   .product__actions {
     width: 100%;
+  }
+}
+
+/* ---- Legal pages: narrow screens ---------------------------------------- */
+@media (max-width: 899px) {
+  /* 14 entries in one column pushed the policy itself a long way down the
+     page, so lay the contents out in as many columns as will fit. */
+  .legal__toc {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .legal__toc ol {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2px 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* One column at phone widths, so cap it and let it scroll rather than
+     spending four screens of the page on a contents list. */
+  .legal__toc ol {
+    max-height: 244px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .legal__shell {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .legal {
+    padding-top: calc(var(--header-h) + 24px);
+    padding-bottom: 56px;
+  }
+  .legal__masthead {
+    margin-bottom: 22px;
+  }
+  .legal__meta {
+    gap: 6px 20px;
+    font-size: 0.78rem;
+  }
+  .legal__draft {
+    margin-bottom: 32px;
+  }
+  .legal__body section + section {
+    margin-top: 34px;
+    padding-top: 30px;
+  }
+  .legal__body h2 {
+    grid-template-columns: 1fr;
+    gap: 2px;
+    font-size: 1.32rem;
+  }
+
+  /* Stack the data table into one labelled block per row. Three columns of
+     prose cannot be read on a phone, scrollable or not. */
+  .legal__tablewrap {
+    border: 0;
+    border-radius: 0;
+    overflow-x: visible;
+  }
+  .legal__tablewrap table,
+  .legal__tablewrap tbody,
+  .legal__tablewrap tr,
+  .legal__tablewrap td,
+  .legal__tablewrap caption {
+    display: block;
+    min-width: 0;
+    width: auto;
+  }
+  .legal__tablewrap thead {
+    /* The per-cell data-label carries the heading once stacked. */
+    display: none;
+  }
+  .legal__tablewrap caption {
+    padding: 0 0 10px;
+    border-bottom: 0;
+  }
+  .legal__tablewrap tr {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: var(--surface);
+  }
+  .legal__tablewrap tbody th,
+  .legal__tablewrap td {
+    display: block;
+    border-bottom: 0;
+    padding: 0;
+  }
+  .legal__tablewrap tbody th {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .legal__tablewrap td + td {
+    margin-top: 10px;
+  }
+  .legal__tablewrap td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-300);
+    margin-bottom: 2px;
   }
 }
 

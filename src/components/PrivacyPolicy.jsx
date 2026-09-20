@@ -47,7 +47,17 @@ const dataTable = [
   [
     "Order history",
     "Created each time you order",
-    "Showing your past orders, handling refunds and disputes, and our own accounting",
+    "Showing your past orders, handling refunds and disputes, and our own accounting. Each order keeps the delivery address you sent it to",
+  ],
+  [
+    "Your basket",
+    "When you add an item, before you check out",
+    "Holding your basket on our server so it is still there when you come back, on any device you sign in from",
+  ],
+  [
+    "Favourite restaurants",
+    "When you tap the heart on a restaurant",
+    "Showing your favourites, and counting how many people have favourited a restaurant",
   ],
   [
     "Delivery code",
@@ -57,7 +67,7 @@ const dataTable = [
   [
     "Device details",
     "Automatically, if you allow notifications",
-    "Sending order updates to the right phone. We store a notification token, your platform, the app version and your language",
+    "Sending order updates to the right phone. We store a notification token, a device identifier, your platform, the app version and your language",
   ],
 ];
 
@@ -90,7 +100,9 @@ const sections = [
           each item is for.
         </p>
 
-        <div className="legal__tablewrap">
+        {/* tabIndex makes the horizontal scroll reachable by keyboard on the
+            widths where the table still scrolls rather than stacking. */}
+        <div className="legal__tablewrap" tabIndex={0}>
           <table>
             <caption>Personal data held by Mbolo Eats</caption>
             <thead>
@@ -104,8 +116,10 @@ const sections = [
               {dataTable.map(([what, when, why]) => (
                 <tr key={what}>
                   <th scope="row">{what}</th>
-                  <td>{when}</td>
-                  <td className="legal__why">{why}</td>
+                  <td data-label="When we get it">{when}</td>
+                  <td className="legal__why" data-label="What it is for">
+                    {why}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -114,10 +128,11 @@ const sections = [
 
         <h3>What we do not collect</h3>
         <p>
-          We do not collect your microphone, camera, contacts, photos or calendar. We do not
-          track you across other apps or websites, and we do not sell your data to anyone. We
-          never see or store your mobile money PIN &mdash; you enter that with your provider,
-          not with us.
+          We do not collect your microphone, camera, contacts, photos or calendar &mdash; the
+          app does not ask for those permissions. It carries no advertising or analytics
+          software, so we cannot track you across other apps or websites and we do not build
+          an advertising profile of you. We do not sell your data to anyone. We never see or
+          store your mobile money PIN &mdash; you enter that with your provider, not with us.
         </p>
       </>
     ),
@@ -347,14 +362,56 @@ const sections = [
     ),
   },
   {
+    id: "deleting-your-account",
+    title: "Deleting your account",
+    body: (
+      <>
+        <p>
+          You can ask us to delete your Mbolo Eats account and the personal information
+          attached to it. <Todo>describe the in-app route once it exists</Todo>, or write to{" "}
+          <Todo>privacy@ your domain</Todo> from the email address on the account and we will
+          action it within <Todo>number</Todo> days.
+        </p>
+        <p>
+          Deleting your account removes your name, email, phone number, saved basket,
+          favourites and notification tokens. Completed orders are not removed, because we are
+          required to keep sales records for accounting and tax; they are detached from your
+          profile and kept for the period in{" "}
+          <a href="#how-long-we-keep-it">How long we keep it</a>, then deleted.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "this-website",
+    title: "This website",
+    body: (
+      <>
+        <p>
+          This policy also covers mbolotechnologies.com, where you are reading it. The site
+          sets no advertising or analytics cookies and does not track visitors.
+        </p>
+        <p>
+          If you send us a project enquiry through the contact form, we store the name,
+          company, email address, phone number, enquiry type and description you type into it,
+          so that we can reply. That form is separate from the Mbolo Eats app: it is not linked
+          to any app account, and we use it only to answer you.
+        </p>
+      </>
+    ),
+  },
+  {
     id: "keeping-it-secure",
     title: "Keeping it secure",
     body: (
       <>
         <p>
-          Your password is handled by Google&apos;s authentication service and is never
-          visible to us. Traffic between the app and our servers is encrypted. Access to the
-          database is limited to people who need it to run the service.
+          Sign-in is handled by Google&apos;s Firebase Authentication. Your password goes to
+          Google, never to us: we hold no password for your account and could not read one if
+          we tried. Traffic between the app and our servers is encrypted in transit, and every
+          request that touches your data is checked against your signed-in identity, so one
+          account cannot read another&apos;s orders, basket or favourites. Access to the
+          database is limited to the people who need it to run the service.
         </p>
         <p>
           No system is perfectly secure, and we will not pretend otherwise. If a breach

@@ -18,7 +18,7 @@ export default function Header({ base = "" }) {
 
   // Close the mobile menu once the viewport is wide enough for the inline nav.
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 861px)");
+    const mq = window.matchMedia("(min-width: 981px)");
     const onChange = (e) => e.matches && setOpen(false);
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
