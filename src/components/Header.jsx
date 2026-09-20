@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import mark from "../assets/mbolo-mark.webp";
 import { company, nav } from "../data/site";
 
 export default function Header() {
@@ -25,7 +26,7 @@ export default function Header() {
       <div className="container">
         <a className="brand" href="#top" aria-label={`${company.legalName} — home`}>
           <span className="brand__mark" aria-hidden="true">
-            M
+            <img src={mark} width="120" height="120" alt="" decoding="async" />
           </span>
           <span>
             <span className="brand__name">{company.name}</span>

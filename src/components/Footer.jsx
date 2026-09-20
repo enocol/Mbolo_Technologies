@@ -1,3 +1,4 @@
+import mark from "../assets/mbolo-mark.webp";
 import { company, footerLinks } from "../data/site";
 
 export default function Footer() {
@@ -10,7 +11,7 @@ export default function Footer() {
           <div>
             <a className="brand" href="#top">
               <span className="brand__mark" aria-hidden="true">
-                M
+                <img src={mark} width="120" height="120" alt="" loading="lazy" decoding="async" />
               </span>
               <span>
                 <span className="brand__name">{company.name}</span>

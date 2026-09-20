@@ -4,7 +4,10 @@ import { company, engagementOptions } from "../data/site";
 
 const EMPTY = { name: "", company: "", email: "", phone: "", topic: "", message: "" };
 
-const ENDPOINT = "/api/contact-requests";
+// Set VITE_CONTACT_ENDPOINT in .env (or .env.local) to point the form at another
+// host. Anything VITE_-prefixed is baked into the client bundle and public, so
+// this must never hold a secret. The fallback keeps the form working unset.
+const ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || "/api/contact-requests";
 const FALLBACK_ERROR =
   "We could not send your message. Please try again, or write to us by email.";
 
@@ -228,7 +231,7 @@ export default function Contact() {
 
           <p className="form__note">
             Prefer email? Write to{" "}
-            <a href={`mailto:${company.email}`} style={{ color: "var(--amber-400)" }}>
+            <a href={`mailto:${company.email}`} style={{ color: "var(--accent-400)" }}>
               {company.email}
             </a>
             . We treat every brief as confidential.

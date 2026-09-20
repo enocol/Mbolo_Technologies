@@ -1,11 +1,6 @@
 import Icon from "./Icon";
+import PhoneMockup from "./PhoneMockup";
 import { product } from "../data/site";
-
-const menu = [
-  { emoji: "🍲", name: "Ndolé & plantain", place: "Chez Mado · Akwa", eta: "25 min" },
-  { emoji: "🍗", name: "Poulet DG", place: "Le Grill · Bonanjo", eta: "30 min" },
-  { emoji: "🐟", name: "Poisson braisé", place: "Maré Bleu · Bali", eta: "35 min" },
-];
 
 export default function Products() {
   return (
@@ -53,7 +48,7 @@ export default function Products() {
                 marginTop: "24px",
                 fontSize: "0.92rem",
                 color: "var(--ink-500)",
-                borderLeft: "3px solid var(--amber-500)",
+                borderLeft: "3px solid var(--accent-500)",
                 paddingLeft: "16px",
               }}
             >
@@ -61,30 +56,7 @@ export default function Products() {
             </p>
           </div>
 
-          <div className="phone" aria-hidden="true">
-            <div className="phone__screen">
-              <div className="phone__bar">
-                <small>Deliver to</small>
-                <strong>Akwa, Douala</strong>
-                <div className="phone__search">Search restaurants near you…</div>
-              </div>
-
-              <div className="phone__list">
-                {menu.map((item) => (
-                  <div className="phone__item" key={item.name}>
-                    <span className="phone__thumb">{item.emoji}</span>
-                    <span>
-                      <b>{item.name}</b>
-                      <span>{item.place}</span>
-                    </span>
-                    <em>{item.eta}</em>
-                  </div>
-                ))}
-              </div>
-
-              <div className="phone__cta">Track my order</div>
-            </div>
-          </div>
+          <PhoneMockup />
         </div>
       </div>
     </section>
