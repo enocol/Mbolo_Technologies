@@ -1,5 +1,4 @@
-import Header from "./Header";
-import Footer from "./Footer";
+import LegalPage, { Todo } from "./LegalPage";
 import { company, privacyContact } from "../data/site";
 
 /**
@@ -10,10 +9,6 @@ import { company, privacyContact } from "../data/site";
  * appendix describing gaps in the app; it is deliberately not reproduced here,
  * because it was written for the team and describes internal weaknesses.
  */
-function Todo({ children }) {
-  return <span className="legal__todo">{children}</span>;
-}
-
 const dataTable = [
   [
     "Name",
@@ -531,76 +526,28 @@ const sections = [
   },
 ];
 
-const pad = (n) => String(n).padStart(2, "0");
-
 export default function PrivacyPolicy() {
   return (
-    <>
-      <Header base="/" />
-      <main className="legal">
-        <div className="container">
-          <header className="legal__masthead">
-            <span className="eyebrow">Legal</span>
-            <h1>Mbolo Eats Privacy Policy</h1>
-            <p className="legal__standfirst">
-              How we collect, use and share your information when you order food through the
-              Mbolo Eats app.
-            </p>
-            <div className="legal__meta">
-              <span>
-                <b>Version</b> Draft 1
-              </span>
-              <span>
-                <b>Effective</b> 1 January 2027
-              </span>
-              <span>
-                <b>Applies to</b> Mbolo Eats for Android and iOS
-              </span>
-            </div>
-          </header>
-
-          <div className="legal__draft" role="note">
-            <h2>This policy is a draft</h2>
-            <p>
-              It describes what the Mbolo Eats app actually does, but it has not yet been
-              reviewed by a qualified practitioner against Cameroonian law, and the items
-              marked <Todo>like this</Todo> are not yet settled. It is published here for
-              review and is not yet in force.
-            </p>
-          </div>
-
-          <div className="legal__shell">
-            <nav className="legal__toc" aria-label="Contents">
-              <h2>Contents</h2>
-              <ol>
-                {sections.map((section, i) => (
-                  <li key={section.id}>
-                    <a href={`#${section.id}`}>
-                      <span aria-hidden="true">{pad(i + 1)}</span>
-                      {section.title}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-
-            <div className="legal__body">
-              {sections.map((section, i) => (
-                <section id={section.id} key={section.id}>
-                  <h2>
-                    <span className="legal__num" aria-hidden="true">
-                      {pad(i + 1)}
-                    </span>
-                    {section.title}
-                  </h2>
-                  {section.body}
-                </section>
-              ))}
-            </div>
-          </div>
-        </div>
-      </main>
-      <Footer base="/" />
-    </>
+    <LegalPage
+      title="Mbolo Eats Privacy Policy"
+      standfirst="How we collect, use and share your information when you order food through the Mbolo Eats app."
+      meta={[
+        { label: "Version", value: "Draft 1" },
+        { label: "Effective", value: "1 January 2027" },
+        { label: "Applies to", value: "Mbolo Eats for Android and iOS" },
+      ]}
+      note={{
+        title: "This policy is a draft",
+        body: (
+          <p>
+            It describes what the Mbolo Eats app actually does, but it has not yet been
+            reviewed by a qualified practitioner against Cameroonian law, and the items marked{" "}
+            <Todo>like this</Todo> are not yet settled. It is published here for review and is
+            not yet in force.
+          </p>
+        ),
+      }}
+      sections={sections}
+    />
   );
 }

@@ -182,5 +182,8 @@ export const footerLinks = {
     { label: "Mbolo Eats", href: "#products" },
     { label: "Partner with us", href: "#contact" },
   ],
-  Legal: [{ label: "Privacy Policy", href: "/legal/privacy-policy" }],
+  Legal: [
+    { label: "Privacy Policy", href: "/legal/privacy-policy" },
+    { label: "Terms of Service", href: "/legal/terms-of-service" },
+  ],
 };

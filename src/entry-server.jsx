@@ -1,6 +1,7 @@
 import { renderToString } from 'react-dom/server'
 import App from './App'
 import PrivacyPolicy from './components/PrivacyPolicy'
+import TermsOfService from './components/TermsOfService'
 
 // Pages rendered to static HTML at build time, keyed by their built shell.
 // This module is bundled by `vite build --ssr`, so asset imports inside these
@@ -8,7 +9,8 @@ import PrivacyPolicy from './components/PrivacyPolicy'
 // server instead would emit /src/... paths that do not exist in dist/.
 const pages = {
   'index.html': App,
-  'legal/privacy-policy/index.html': PrivacyPolicy
+  'legal/privacy-policy/index.html': PrivacyPolicy,
+  'legal/terms-of-service/index.html': TermsOfService
 }
 
 export const pageKeys = Object.keys(pages)

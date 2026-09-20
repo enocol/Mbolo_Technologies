@@ -16,7 +16,8 @@ const proxy = {
 // is a real URL on a static host — no router, no SPA rewrite rule.
 const pages = {
   main: 'index.html',
-  privacy: 'legal/privacy-policy/index.html'
+  privacy: 'legal/privacy-policy/index.html',
+  terms: 'legal/terms-of-service/index.html'
 }
 
 const entry = (path) => fileURLToPath(new URL(path, import.meta.url))
