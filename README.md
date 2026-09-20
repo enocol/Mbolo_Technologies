@@ -17,8 +17,10 @@ npm run preview # serve the production build locally
 
 ```
 index.html              page shell, meta tags, Google Fonts
+legal/privacy-policy/   second HTML entry -> /legal/privacy-policy
 public/favicon.svg      brand mark
-src/main.jsx            React entry point
+src/main.jsx            React entry point (home)
+src/legal.jsx           React entry point (privacy policy)
 src/App.jsx             section order
 src/styles.css          design tokens + all component styles
 src/data/site.js        ALL copy and contact details (edit this first)
@@ -31,6 +33,7 @@ src/components/
   PhoneMockup.jsx       replica of the Mbolo Eats app home screen
   WhyMbolo.jsx          differentiators + 4-step process
   Contact.jsx           contact details + project enquiry form
+  PrivacyPolicy.jsx     /legal/privacy-policy page
   Footer.jsx            link columns + legal line
   Icon.jsx              inline SVG icon set
 ```
@@ -69,6 +72,21 @@ src/components/
 5. **Confirm the Ni's Kitchen logo** in [src/components/PhoneMockup.jsx](src/components/PhoneMockup.jsx)
    may be shown publicly. It is cropped from an app screenshot and is a third party's
    brand mark, so it implies a partnership to anyone who reads the page.
+
+## Pages
+
+The site is a Vite multi-page build, not a single-page app with a router: each entry in
+`build.rollupOptions.input` ([vite.config.js](vite.config.js)) becomes its own HTML file,
+so `/legal/privacy-policy` is a real URL on any static host with no rewrite rule. React is
+split into a chunk both pages share. To add a page, create `<path>/index.html`, a matching
+entry under `src/`, and register it in the config.
+
+`Header` and `Footer` take a `base` prop. The home page leaves it empty so its anchors stay
+`#contact`; sub-pages pass `base="/"` so the same links become `/#contact` and jump back to
+the home page.
+
+The privacy policy still carries unfilled values, shown on the page as dashed
+`legal__todo` markers. Search the rendered page for them before the URL goes public.
 
 ## Design tokens
 

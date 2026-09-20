@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import mark from "../assets/mbolo-mark.webp";
 import { company, nav } from "../data/site";
 
-export default function Header() {
+// `base` prefixes the in-page anchors so this header also works on a sub-page,
+// where "#contact" alone would point at a section that is not on the page.
+export default function Header({ base = "" }) {
+  const to = (href) => (href.startsWith("#") ? `${base}${href}` : href);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -24,7 +27,7 @@ export default function Header() {
   return (
     <header className={`header${scrolled ? " header--scrolled" : ""}`}>
       <div className="container">
-        <a className="brand" href="#top" aria-label={`${company.legalName} — home`}>
+        <a className="brand" href={to("#top")} aria-label={`${company.legalName} — home`}>
           <span className="brand__mark" aria-hidden="true">
             <img src={mark} width="120" height="120" alt="" decoding="async" />
           </span>
@@ -36,16 +39,16 @@ export default function Header() {
 
         <nav className={`nav${open ? " nav--open" : ""}`} aria-label="Main">
           {nav.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            <a key={item.href} href={to(item.href)} onClick={() => setOpen(false)}>
               {item.label}
             </a>
           ))}
-          <a className="btn btn--primary" href="#contact" onClick={() => setOpen(false)}>
+          <a className="btn btn--primary" href={to("#contact")} onClick={() => setOpen(false)}>
             Start a project
           </a>
         </nav>
 
-        <a className="btn btn--primary header__cta" href="#contact">
+        <a className="btn btn--primary header__cta" href={to("#contact")}>
           Start a project
         </a>
 

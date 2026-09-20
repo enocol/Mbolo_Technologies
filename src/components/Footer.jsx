@@ -1,15 +1,17 @@
 import mark from "../assets/mbolo-mark.webp";
 import { company, footerLinks } from "../data/site";
 
-export default function Footer() {
+// See Header: `base` keeps the in-page anchors working from a sub-page.
+export default function Footer({ base = "" }) {
   const year = new Date().getFullYear();
+  const to = (href) => (href.startsWith("#") ? `${base}${href}` : href);
 
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer__grid">
           <div>
-            <a className="brand" href="#top">
+            <a className="brand" href={to("#top")}>
               <span className="brand__mark" aria-hidden="true">
                 <img src={mark} width="120" height="120" alt="" loading="lazy" decoding="async" />
               </span>
@@ -30,7 +32,7 @@ export default function Footer() {
               <ul>
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href}>{link.label}</a>
+                    <a href={to(link.href)}>{link.label}</a>
                   </li>
                 ))}
               </ul>
