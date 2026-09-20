@@ -519,6 +519,9 @@ ul {
   line-height: 1.2;
 }
 .hero-card__meta {
+  /* Sits under the title, as .brand__sub does. Inline it ran straight on from
+     the title with no space, which now also reads that way to a crawler. */
+  display: block;
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.6);
 }

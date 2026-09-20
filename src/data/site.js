@@ -16,6 +16,15 @@ export const company = {
   hours: "Mon – Fri, 8:00 – 18:00 (WAT)",
 };
 
+// Contact point published in the privacy policy for data-protection questions.
+// Deliberately separate from `company` above, whose phone and address describe
+// the Cameroon operation shown on the marketing pages.
+export const privacyContact = {
+  email: "support@mbolotechnologies.com",
+  phone: "+44 751 9999500",
+  post: "48 Leasowe Drive, Perton, Wolverhampton, WV6 7TU",
+};
+
 export const nav = [
   { label: "Services", href: "#services" },
   { label: "Products", href: "#products" },

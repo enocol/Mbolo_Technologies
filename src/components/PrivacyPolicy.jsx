@@ -1,5 +1,6 @@
 import Header from "./Header";
 import Footer from "./Footer";
+import { company, privacyContact } from "../data/site";
 
 /**
  * Privacy policy for the Mbolo Eats app, served at /legal/privacy-policy.
@@ -82,8 +83,8 @@ const sections = [
           local restaurants and arrange for a rider to bring your order to you.
         </p>
         <p>
-          This policy is issued by <Todo>registered legal entity name</Todo>, of{" "}
-          <Todo>registered address</Todo>. Where this policy says &ldquo;we&rdquo; or
+          Mbolo Eats is operated by {company.legalName}, of{" "}
+          <Todo>registered address</Todo>, and this policy is issued by that company. Where this policy says &ldquo;we&rdquo; or
           &ldquo;us&rdquo;, it means that company. Where it says &ldquo;you&rdquo;, it means
           anyone using the Mbolo Eats app to browse restaurants or place an order.
         </p>
@@ -276,6 +277,59 @@ const sections = [
     ),
   },
   {
+    id: "google-services",
+    title: "Google services and limited use",
+    body: (
+      <>
+        <p>
+          Parts of Mbolo Eats run on Google services. This is what each one receives.
+        </p>
+        <ul className="legal__list">
+          <li>
+            <b>Firebase Authentication</b> holds your sign-in. Your email address and password
+            go to Google, not to us; we store no password for your account. Google also sends
+            the verification and password-reset emails.
+          </li>
+          <li>
+            <b>Google Maps</b> draws the map on your order screen, so Google receives the map
+            requests your device makes while that screen is open.
+          </li>
+          <li>
+            <b>Firebase Cloud Messaging</b> delivers order notifications to Android phones,
+            using the notification token described above.
+          </li>
+        </ul>
+        <p>
+          Signing in is the only thing the app asks of your Google account. It does not
+          request access to Gmail, Drive, Contacts, Calendar, Photos or any other Google
+          service, and it cannot read them.
+        </p>
+        <div className="legal__note">
+          <p>
+            <b>Limited use.</b> Mbolo Eats&apos; use and transfer of information received from
+            Google APIs to any other app adheres to the{" "}
+            <a
+              href="https://developers.google.com/terms/api-services-user-data-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google API Services User Data Policy
+            </a>
+            , including its Limited Use requirements.
+          </p>
+          <p>
+            In plain terms: we do not use that information for targeted advertising, we do not
+            sell it to data brokers or information resellers, we do not use it to judge
+            credit-worthiness or for lending, and we do not use it to train generalised
+            artificial-intelligence or machine-learning models. We use it to provide and
+            improve Mbolo Eats, and for nothing else. No human reads it except where you have
+            asked us to, where it is needed for security, or where the law requires it.
+          </p>
+        </div>
+      </>
+    ),
+  },
+  {
     id: "payments",
     title: "Payments",
     body: (
@@ -318,8 +372,8 @@ const sections = [
       <>
         <p>We keep your account details for as long as your account exists.</p>
         <p>
-          We keep completed orders for <Todo>retention period</Todo>, because we need them for
-          refunds, disputes, and our accounting and tax obligations.
+          We keep completed orders for six months, because we need them for refunds,
+          disputes, and our accounting and tax obligations. After that they are deleted.
         </p>
         <p>Notification tokens are removed when you sign out or turn notifications off.</p>
       </>
@@ -369,8 +423,8 @@ const sections = [
         <p>
           You can ask us to delete your Mbolo Eats account and the personal information
           attached to it. <Todo>describe the in-app route once it exists</Todo>, or write to{" "}
-          <Todo>privacy@ your domain</Todo> from the email address on the account and we will
-          action it within <Todo>number</Todo> days.
+          <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a> from the email
+          address on the account and we will action it within one day.
         </p>
         <p>
           Deleting your account removes your name, email, phone number, saved basket,
@@ -426,7 +480,7 @@ const sections = [
     title: "Children",
     body: (
       <p>
-        Mbolo Eats is not intended for children under <Todo>age</Todo>. We do not knowingly
+        Mbolo Eats is not intended for children under 16. We do not knowingly
         collect information from them. If you believe a child has created an account, contact
         us and we will remove it.
       </p>
@@ -436,11 +490,18 @@ const sections = [
     id: "changes",
     title: "Changes to this policy",
     body: (
-      <p>
-        If we change this policy we will update the effective date above, and tell you in the
-        app when the change is significant. Continuing to use Mbolo Eats after a change means
-        you accept the updated policy.
-      </p>
+      <>
+        <p>
+          If we change this policy we will update the effective date above, and tell you in the
+          app when the change is significant. Continuing to use Mbolo Eats after a change means
+          you accept the updated policy.
+        </p>
+        <p>
+          If we ever change what we do with information that comes from Google &mdash; a new
+          permission, a new purpose, a new party it is shared with &mdash; we will say so here
+          and notify you in the app before the change takes effect.
+        </p>
+      </>
     ),
   },
   {
@@ -451,18 +512,20 @@ const sections = [
         <p>Questions about this policy, or about your information:</p>
         <ul className="legal__list">
           <li>
-            <b>Email</b> <Todo>privacy@ your domain</Todo>
+            <b>Email</b>{" "}
+            <a href={`mailto:${privacyContact.email}`}>{privacyContact.email}</a>
           </li>
           <li>
-            <b>Phone</b> <Todo>support number</Todo>
+            <b>Phone</b>{" "}
+            <a href={`tel:${privacyContact.phone.replace(/\s+/g, "")}`}>
+              {privacyContact.phone}
+            </a>
           </li>
           <li>
-            <b>Post</b> <Todo>registered address</Todo>
+            <b>Post</b> {privacyContact.post}
           </li>
         </ul>
-        <p>
-          We aim to respond within <Todo>number</Todo> days.
-        </p>
+        <p>We aim to respond within one day.</p>
       </>
     ),
   },
@@ -488,7 +551,7 @@ export default function PrivacyPolicy() {
                 <b>Version</b> Draft 1
               </span>
               <span>
-                <b>Effective</b> <Todo>date to be set</Todo>
+                <b>Effective</b> 1 January 2027
               </span>
               <span>
                 <b>Applies to</b> Mbolo Eats for Android and iOS
