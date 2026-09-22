@@ -158,7 +158,7 @@ export default function PhoneMockup() {
                 <path
                   d="m7 12.4 3.3 3.3L17 9"
                   fill="none"
-                  stroke="#ec6636"
+                  className="pm__check"
                   strokeWidth="2.8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
