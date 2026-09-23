@@ -13,6 +13,8 @@ export const company = {
   whatsapp: "+44 7 5199 99 500", // PLACEHOLDER
   city: "Douala, Cameroon", // PLACEHOLDER
   address: "Bonamoussadi, Douala — Littoral, Cameroon", // PLACEHOLDER
+  // Registered office of the SARL, as named in the legal pages.
+  registeredAddress: "Bamenda, Mezam, NorthWest Region",
   hours: "Mon – Fri, 8:00 – 18:00 (WAT)",
 };
 

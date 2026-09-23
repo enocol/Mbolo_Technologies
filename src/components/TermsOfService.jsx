@@ -17,7 +17,7 @@ const sections = [
       <>
         <p>
           Mbolo Eats is a food delivery service operating in Cameroon, run by{" "}
-          {company.legalName}, of <Todo>registered address</Todo>. These terms are the
+          {company.legalName}, of {company.registeredAddress}. These terms are the
           agreement between you and that company when you use the Mbolo Eats app to browse
           restaurants or place an order. Where they say &ldquo;we&rdquo; or &ldquo;us&rdquo;,
           they mean that company; &ldquo;you&rdquo; means you.
@@ -70,16 +70,18 @@ const sections = [
       <>
         <p>
           Restaurants decide what is on their menu, what it costs, and how it is prepared. We
-          show you those menus, take your order, pass it to the restaurant, and arrange a rider
-          to bring it to you.
+          show you those menus, take your order, pass it to the restaurant, and bring the food
+          to you.
         </p>
         <p>
-          <Todo>
-            confirm whether we sell the food to you or arrange the sale on the restaurant&apos;s
-            behalf
-          </Todo>
-          . This decides who is legally responsible for the food itself, so it needs to be
-          settled before these terms are relied on.
+          <b>You buy the food from the restaurant, not from us.</b> For that sale we act as the
+          restaurant&apos;s agent: we put its menu in front of you, take your order and collect
+          your money on its behalf. The contract for the food is between you and the restaurant.
+        </p>
+        <p>
+          Delivery is different. That is our own service, provided by us to you, and the
+          delivery fee is ours. So the restaurant answers for the food, and we answer for
+          getting it to you.
         </p>
       </>
     ),
@@ -148,6 +150,11 @@ const sections = [
           We do not accept cards. If a mobile money payment fails, your order will not go
           ahead, and you are welcome to try again or choose cash.
         </p>
+        <p>
+          We collect the price of the food as the restaurant&apos;s agent, so paying us — or
+          handing cash to the rider — settles what you owe the restaurant for that order. You
+          do not have to pay the restaurant separately.
+        </p>
       </>
     ),
   },
@@ -168,9 +175,13 @@ const sections = [
           over the phone or by message.
         </p>
         <p>
-          Please be reachable on the number you gave and able to accept the delivery. If the
-          rider cannot reach you, or nobody is at the address, the order may be treated as
-          delivered and <Todo>set out what happens to the money in that case</Todo>.
+          Please be reachable on the number you gave, and able to accept the delivery. If the
+          rider cannot reach you, or nobody is at the address, the order is treated as
+          delivered: we cannot refund it, and the food is not held for you to collect or sent
+          out again later. The restaurant has already cooked it to order and will not take it
+          back, so the cost stands whether or not the food reached you. That is why it matters
+          that the number on your account is right and that someone is there to take the
+          delivery.
         </p>
       </>
     ),
@@ -191,8 +202,13 @@ const sections = [
         </p>
         <p>
           A restaurant can cancel an order it has taken — if an item runs out, for example. If
-          that happens you are told in the app, and any payment you have already made is{" "}
-          <Todo>set out how and when money is returned</Todo>.
+          that happens you are told in the app, and any payment you have already made is
+          refunded in full, including the delivery fee. Refunds are usually back with you
+          within the hour, and within two days at the latest.
+        </p>
+        <p>
+          If you chose to pay cash, nothing has been taken from you, so there is nothing to
+          return.
         </p>
       </>
     ),
@@ -221,7 +237,8 @@ const sections = [
       <>
         <p>
           The restaurant prepares your food and is responsible for what is in it, how it is
-          cooked, and how it is packed.
+          cooked, and how it is packed. Your contract for the food is with them, as set out in{" "}
+          <a href="#our-role">What we do, and what the restaurant does</a>.
         </p>
         <p>
           <b>Allergies.</b> The app does not carry allergen information, and we cannot tell you
@@ -284,9 +301,11 @@ const sections = [
     body: (
       <>
         <p>
-          We are responsible for running the service with reasonable care and skill. We are not
-          responsible for things outside our control — a network outage at a payment provider,
-          or a road closed by weather.
+          We are responsible for running the app, and for the delivery itself, with reasonable
+          care and skill. We are not responsible for the food, which you buy from the
+          restaurant — see <a href="#our-role">What we do, and what the restaurant does</a>.
+          Nor are we responsible for things outside our control, such as a network outage at a
+          payment provider or a road closed by weather.
         </p>
         <p>
           <Todo>set the limits of liability, and any cap</Todo>. Nothing in these terms removes
@@ -372,17 +391,6 @@ export default function TermsOfService() {
         { label: "Effective", value: "1 January 2027" },
         { label: "Applies to", value: "Mbolo Eats for Android and iOS" },
       ]}
-      note={{
-        title: "These terms are a draft",
-        body: (
-          <p>
-            They describe how the Mbolo Eats app actually works, but they have not been
-            reviewed by a qualified practitioner, and the items marked <Todo>like this</Todo>{" "}
-            are decisions we have not made yet. These terms are a contract: published here for
-            review, and not yet in force.
-          </p>
-        ),
-      }}
       sections={sections}
     />
   );

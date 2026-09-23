@@ -78,8 +78,8 @@ const sections = [
           local restaurants and arrange for a rider to bring your order to you.
         </p>
         <p>
-          Mbolo Eats is operated by {company.legalName}, of{" "}
-          <Todo>registered address</Todo>, and this policy is issued by that company. Where this policy says &ldquo;we&rdquo; or
+          Mbolo Eats is operated by {company.legalName}, of {company.registeredAddress},
+          and this policy is issued by that company. Where this policy says &ldquo;we&rdquo; or
           &ldquo;us&rdquo;, it means that company. Where it says &ldquo;you&rdquo;, it means
           anyone using the Mbolo Eats app to browse restaurants or place an order.
         </p>
