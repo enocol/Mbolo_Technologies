@@ -1,11 +1,6 @@
 import Icon from "./Icon";
+import HeroCarousel from "./HeroCarousel";
 import { heroStats } from "../data/site";
-
-const orderRows = [
-  { tag: "01", label: "Order received · Akwa", value: "2 min" },
-  { tag: "02", label: "Courier assigned · Bonapriso", value: "On route" },
-  { tag: "03", label: "Paid by Mobile Money", value: "Settled" },
-];
 
 export default function Hero() {
   return (
@@ -44,30 +39,7 @@ export default function Hero() {
           </div>
 
           <div className="hero__visual">
-            <div className="glass">
-              <div className="hero-card__top">
-                <span className="hero-card__badge" aria-hidden="true">
-                  ME
-                </span>
-                <span>
-                  <span className="hero-card__title">Mbolo Eats</span>
-                  <span className="hero-card__meta">Food delivery · Cameroon</span>
-                </span>
-                <span className="hero-card__live">
-                  <i aria-hidden="true" /> Live
-                </span>
-              </div>
-
-              <div className="hero-card__rows">
-                {orderRows.map((row) => (
-                  <div className="hero-row" key={row.tag}>
-                    <i aria-hidden="true">{row.tag}</i>
-                    <span>{row.label}</span>
-                    <span>{row.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <HeroCarousel />
 
             <div className="hero__ticker">
               <div className="ticker-tile">
