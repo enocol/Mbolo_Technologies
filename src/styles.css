@@ -618,6 +618,11 @@ ul {
    the incoming one arrives from the left. Slides are stacked and moved
    individually, so every transition goes the same way — a single track would
    have to run backwards when the last slide wraps to the first. */
+/* The <picture> wrappers carry no layout of their own; the absolutely
+   positioned <img> inside each one is what is placed. */
+.carousel picture {
+  display: contents;
+}
 .carousel__slide {
   position: absolute;
   inset: 0;
