@@ -1252,20 +1252,10 @@ ul {
   gap: 16px;
   backdrop-filter: blur(8px);
 }
-.field {
-  display: grid;
-  gap: 7px;
-}
-.field label {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  font-family: var(--font-display);
-}
-/* Scoped to .form, not .field: the one-question-at-a-time form lays its
-   controls out itself and has no .field wrapper, so these rules have to reach
-   both. Metrics match .btn — same 13px/24px box and the same pill — so an
-   input and the button beside it read as one family. */
+/* Scoped to .form rather than to a per-control wrapper: the form lays its own
+   controls out, so any control inside it is covered. Metrics match .btn — the
+   same 13px/24px box and the same pill — so an input and the button beside it
+   read as one family. */
 .form input,
 .form select,
 .form textarea {
@@ -1300,11 +1290,6 @@ ul {
 }
 .form select option {
   color: var(--ink-900);
-}
-.form__row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
 }
 .form__note {
   font-size: 0.8rem;
@@ -1812,9 +1797,6 @@ ul {
     grid-template-columns: 1fr;
   }
   .steps {
-    grid-template-columns: 1fr;
-  }
-  .form__row {
     grid-template-columns: 1fr;
   }
   .hero__stats {
